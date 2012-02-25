@@ -2,5 +2,15 @@
 html
   head
     title= title
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(name="description", content="twitterchat")
+    meta(name="author", content="twitterchat")
     link(rel='stylesheet', href='/stylesheets/style.css')
-  body!= body
+    link(rel'stylesheet',  href='../public/bootstrap/css/bootstrap.css')
+    link(rel'stylesheet',  href='../public/bootstrap/css/bootstrap-responsive.css')    
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    script(src="http://html5shim.googlecode.com/svn/trunk/html5.js", type="text/javascript")
+    <![endif]-->
+    script(src="http://code.jquery.com/jquery.min.js", type="text/javascript")
+  body!= body    
