@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+.bottom-dock {
+    position: fixed; 
+    bottom: 0px; 
+    left: 0px; 
+    width: 100%; 
+    color: #fff; 
+    background: #000;
+}
