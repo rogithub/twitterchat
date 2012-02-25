@@ -7,7 +7,7 @@ $(function(){
         if (event.keyCode != 13) return;
             var msg = $(this).attr('value');
         if (msg) {
-            $('#messages ul').append('<li>' + msg + '</li>');     
+            $('#messages ul').prepend('<li>' + msg + '</li>');     
         }
         txtMsg.focus();
         txtMsg.attr('value', '');
@@ -16,7 +16,7 @@ $(function(){
     btnSend.click(function (){
         var msg = txtMsg.attr('value');
         if (msg) {
-            $('#messages ul').append('<li>' + msg + '</li>');     
+            $('#messages ul').prepend('<li>' + msg + '</li>');     
         }
         txtMsg.focus();
         txtMsg.attr('value', '');
