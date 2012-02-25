@@ -10,6 +10,7 @@ $(function(){
             $('#messages ul').append('<li>' + msg + '</li>');     
         }
         txtMsg.focus();
+        txtMsg.attr('value', '');
     });
     
     btnSend.click(function (){
@@ -18,5 +19,6 @@ $(function(){
             $('#messages ul').append('<li>' + msg + '</li>');     
         }
         txtMsg.focus();
+        txtMsg.attr('value', '');
     });
 });
