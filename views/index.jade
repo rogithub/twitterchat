@@ -1,6 +1,27 @@
-h1= title
-p Welcome to #{title}
-#container-fluid(class="container-fluid")
-    #row-fluid(class="row-fluid")
-        #span2(class="span2")
-        #span10(class="span10")    
+#navbar(class="navbar navbar-fixed-top")
+    #navbarInner(class="navbar-inner")
+        #navbarContainer(class="container")
+            a(class="btn btn-navbar",  data-toggle="collapse", data-target=".nav-collapse")
+                span(class="icon-bar")
+                span(class="icon-bar")
+                span(class="icon-bar")
+            a(class="brand", href="#">
+                #{title}
+            #menuItems(class="nav-collapse")
+                ul(class="nav")
+                    li(class="active")
+                        a(href="#")
+                            Home
+                    li()
+                        a(href="about")
+                            About
+                    li()
+                        a(href="contact")
+                            Contact
+#container(class="container")
+    #messages(class="hero-unit")
+        h1 = Messages will be appended here!
+        p This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
+        p a(class="btn btn-primary btn-large")Learn more
+      
+    
