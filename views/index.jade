@@ -14,7 +14,11 @@
                         a(href="about") About
                     li
                         a(href="contact") Contact
+
 #container(class="container")
     #messages(class="hero-unit")
         a(href="/auth/twitter")
-            h1 welcome to twitterchat 
+            - if (everyauth.loggedIn)
+                h1 Hi #{everyauth.twitter.user.name} welcome to twitterchat
+            - else
+                h1 welcome to twitterchat please log in

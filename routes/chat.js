@@ -4,5 +4,5 @@
  */
 
 exports.chat = function(req, res){
-  res.render('chat', { title: 'twitterchat' })
+  res.render('/chat', { title: 'twitterchat' })
 };

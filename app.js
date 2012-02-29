@@ -5,17 +5,20 @@
 var express   	= require('express')
   , routes 	= require('./routes')
   , everyauth 	= require('everyauth')
-  , Promise 	= everyauth.Promise
   , util 	= require('util')
-  , config 	= require('konphyg')(__dirname + '/config');
+  , config 	= require('konphyg')(__dirname + '/config')
+  , users 	= require('./lib/users');
 
 var twitterConfig = config('twitterapp');
 
-everyauth.twitter.consumerKey(twitterConfig.key).consumerSecret(twitterConfig.secret).findOrCreateUser(function(session, accessToken, accessTockenSecret,twiiterUserData){	
-	var promise = new Promise();
-	//users.findOrCreateByTwitterData(twitterUserData, accessTocken, accessTockenSecret, promise);
-	return promise;
-}).redirectPath('/chat');
+everyauth.twitter
+	.consumerKey(twitterConfig.key)
+	.consumerSecret(twitterConfig.secret)
+	.findOrCreateUser(function(session, accessToken, accessTokenSecret,twitterUserData){	
+		var promise = this.Promise();
+		users.findOrCreateByTwitterData(twitterUserData, accessToken, accessTokenSecret, promise);
+		return promise;
+	}).redirectPath('/chat');
 
 var app = express.createServer();
 
@@ -44,6 +47,8 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index);
+app.get('/chat', routes.chat);
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+console.log("http://dev.twitterchat.com:%d", app.address().port);
