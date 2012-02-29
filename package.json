@@ -5,5 +5,7 @@
   , "dependencies": {
       "express": "2.5.5"
     , "jade": ">= 0.0.1"
+    , "everyauth": ">= 0.2.3"
+    , "konphyg": ">=1.0.0"
   }
 }
