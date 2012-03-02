@@ -7,20 +7,24 @@ var express   	= require('express')
   , everyauth 	= require('everyauth')
   , util 	= require('util')
   , config 	= require('konphyg')(__dirname + '/config')
-  , users 	= require('./lib/users');
+  , users 	= require('./lib/users')
+  , chat	= require('./lib/chat');
 
 var twitterConfig = config('twitterapp');
+var app = express.createServer();
 
 everyauth.twitter
 	.consumerKey(twitterConfig.key)
 	.consumerSecret(twitterConfig.secret)
 	.findOrCreateUser(function(session, accessToken, accessTokenSecret,twitterUserData){	
 		var promise = this.Promise();
-		users.findOrCreateByTwitterData(twitterUserData, accessToken, accessTokenSecret, promise);
+		users.findOrCreateByTwitterData(twitterUserData, accessToken, accessTokenSecret, promise, function(err, usr){
+			if (err) throw err;
+			chat.listen(app, usr);
+		});	
+
 		return promise;
 	}).redirectPath('/chat');
-
-var app = express.createServer();
 
 // Configuration
 app.configure(function(){
