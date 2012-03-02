@@ -3,16 +3,16 @@ $(function(){
 
     var txtMsg = $("#txtMessage");
     var btnSend = $("#btnSend");
-    var messages = $('#message ul');
+    var messages = $("#msgs");
     txtMsg.focus();
     
     socket.on('message', function(data){
 	var strData = data.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-	messages.prepend('<li>' + strData + '</li>');
+	messages.prepend('<li class="message">' + strData + '</li>');
     });
 
     socket.on('joined', function(data) {        
-        messages.prepend('<li>' + data + 'joined.' + '</li>');
+        messages.prepend('<li class="joined">' + data + ' joined.' + '</li>');
     });
 
     function sendMessage(){

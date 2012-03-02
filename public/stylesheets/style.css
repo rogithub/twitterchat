@@ -16,3 +16,15 @@ a {
     background: #000;
     padding: 3px;
 }
+
+li {
+    list-style:none;
+}
+
+li.message {
+    
+}
+
+li.joined {
+   font-weight: bold;
+}
