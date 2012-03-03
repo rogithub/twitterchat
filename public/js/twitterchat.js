@@ -6,7 +6,7 @@ $(function(){
     var messages = $("#msgs");
     txtMsg.focus();
     
-    socket.on('message', function(data){
+    socket.on('message', function(data) {
 	var strData = data.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 	messages.prepend('<li class="message">' + strData + '</li>');
     });
@@ -15,7 +15,11 @@ $(function(){
         messages.prepend('<li class="joined">' + data + ' joined.' + '</li>');
     });
 
-    function sendMessage(){
+    socket.on('disconnect', function(data) {
+	messages.prepend('<li class="joined">' + data + ' disconnected.' + '</li>');
+    });
+
+    function sendMessage() {
 	var msg = txtMsg.attr('value');
         if (msg) {
             socket.emit('message', msg);
