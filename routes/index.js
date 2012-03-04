@@ -8,5 +8,12 @@ exports.index = function(req, res){
 };
 
 exports.chat = function(req, res){
-  res.render('chat', {title: 'twitterchat' })
-};
+  if (req.loggedIn) {
+  	res.render('chat', {title: 'twitterchat' });
+  }
+  else {
+	res.writeHeader(303, {'location': '/'});
+	res.end();
+  }
+}
+

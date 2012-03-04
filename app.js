@@ -8,7 +8,8 @@ var express   	= require('express')
   , util 	= require('util')
   , config 	= require('konphyg')(__dirname + '/config')
   , users 	= require('./lib/users')
-  , chat	= require('./lib/chat');
+  , chat	= require('./lib/chat')
+  , logger 	= require('log4js').getLogger();
 
 var twitterChatConfig = config('twitterchat');
 var app = express.createServer();
@@ -54,5 +55,5 @@ app.get('/', routes.index);
 app.get('/chat', routes.chat);
 
 app.listen(twitterChatConfig.application.port);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
-console.log("http://%s:%d", twitterChatConfig.application.host, app.address().port);
+logger.debug("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+logger.debug("http://%s:%d", twitterChatConfig.application.host, app.address().port);
