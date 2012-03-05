@@ -9,10 +9,13 @@ var express   	= require('express')
   , config 	= require('konphyg')(__dirname + '/config')
   , users 	= require('./lib/users')
   , chat	= require('./lib/chat')
-  , logger 	= require('log4js').getLogger();
+  , logger 	= require('log4js').getLogger()
+  , mongoose	= require('mongoose');
 
 var twitterChatConfig = config('twitterchat');
 var app = express.createServer();
+
+mongoose.connect(twitterChatConfig.database.host);
 
 everyauth.twitter
 	.consumerKey(twitterChatConfig.authentication.key)
@@ -21,7 +24,6 @@ everyauth.twitter
 		var promise = this.Promise();
 		users.findOrCreateByTwitterData(twitterUserData, accessToken, accessTokenSecret, promise, function(err, usr){
 			if (err) throw err;
-			chat.listen(app, usr);
 		});	
 
 		return promise;
@@ -54,6 +56,7 @@ app.configure('production', function(){
 app.get('/', routes.index);
 app.get('/chat', routes.chat);
 
+chat.listen(app);
 app.listen(twitterChatConfig.application.port);
 logger.debug("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 logger.debug("http://%s:%d", twitterChatConfig.application.host, app.address().port);
