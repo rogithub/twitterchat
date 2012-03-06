@@ -8,14 +8,8 @@ $(function(){
     var twitterId  = $("#twitterId").val();
     txtMsg.focus();
    
-    socket.on('connection', function() {
-	socket.emit('joined',  {screenName: screenName, twitterId: twitterId} );
-    });
-
-    socket.on('disconnect', function() {
-	socket.emit('disconnected',  {screenName: screenName, twitterId: twitterId} );
-    });
- 
+    socket.emit('join',  {screenName: screenName, twitterId: twitterId} );
+    
     socket.on('message', function(data) {
 	var strData = data.message.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");	
 	messages.prepend('<li class="message"><a href="http://twitter/' + data.screenName + '">@' + data.screenName + '</a>: '  + strData + '</li>');
@@ -25,7 +19,7 @@ $(function(){
         messages.prepend('<li class="joined">@' + data.screenName + ' joined.' + '</li>');
     });
 
-    socket.on('disconnected', function(data) {
+    socket.on('leaved', function(data) {
 	messages.prepend('<li class="joined">@' + data.screenName + ' disconnected.' + '</li>');
     });
 
