@@ -1,0 +1,15 @@
+{ 
+  "authentication": { 
+  	"key": "vv3HSHDD4c1Faua1gSuHbA",
+  	"secret": "kM3ZYg3QdERL1iYIae8EPAO4IFbMkm6eGQQ32RaIR6k"
+  },
+
+  "database": {
+	"host": "mongodb://twitterchat:r0j0t3@dbh86.mongolab.com:27867/twitterchat"
+  },
+
+  "application": {
+	"host": "twitterchat.no.de",
+	"port": "80"
+  }
+}
