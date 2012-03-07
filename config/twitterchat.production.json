@@ -9,7 +9,7 @@
   },
 
   "application": {
-	"host": "twitterchat.no.de",
+	"host": "rochat.no.de",
 	"port": "80"
   }
 }
