@@ -1,9 +1,0 @@
-{ 
-  "database": {	
-	"host": "mongodb://localhost/twitterchat"
-  },
-
-  "application": {
-	"host": "dev.twitterchat.com"
-  }
-}
