@@ -17,6 +17,20 @@ a {
     padding: 3px;
 }
 
+.buttonContainer {
+	padding-left:1%;
+	display:inline;
+	text-align:right;
+}
+
+#txtMessage {
+	width:89%;
+}
+#btnSend {
+	width:9%;
+	vertical-align:top;
+}
+
 li {
     list-style:none;
 }
