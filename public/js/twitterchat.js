@@ -1,8 +1,9 @@
 $(function(){
-    //var socket = io.connect('http://localhost');
-    //var socket = io.connect('http://twitterchat.no.de');
-    var socket = io.connect('http://twitterchat.no-ip.org');
-
+    var socket = undefined;
+    if (document.domain)
+	socket = io.connect(document.domain);
+    else
+    	socket = io.connect('http://localhost');
 
     var txtMsg = $("#txtMessage");
     var btnSend = $("#btnSend");
