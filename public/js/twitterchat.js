@@ -16,7 +16,7 @@ $(function(){
     
     socket.on('message', function(data) {
 	var strData = data.message.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");	
-	messages.prepend('<li class="message"><a href="http://twitter/' + data.screenName + '">@' + data.screenName + '</a>: '  + strData + '</li>');
+	messages.prepend('<li class="message"><a href="http://twitter.com/' + data.screenName + '">@' + data.screenName + '</a>: '  + strData + '</li>');
     });
 
     socket.on('joined', function(data) {
