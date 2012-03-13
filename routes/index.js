@@ -1,7 +1,7 @@
 /*   GET home page.   */
 
 exports.index = function(req, res) {
-  res.render('index', { title: 'twitterchat' })
+  res.render('index', { title: 'twitterchat' });
 };
 
 exports.chat = function(req, res) {
@@ -15,6 +15,10 @@ exports.chat = function(req, res) {
 	res.writeHeader(303, {'location': '/'});
 	res.end();
   }
+}
+
+exports.contact = function(req, res) {
+	res.render('contact', {title: 'twitterchat'});
 }
 
 exports.exit = function (req, res) {

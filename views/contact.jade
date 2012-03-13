@@ -8,19 +8,22 @@
             a(class="brand", href="#") #{title}
             #menuItems(class="nav-collapse")
                 ul(class="nav")
-                    li(class="active")
+                    li
                         a(href="/") Home
                     li
                         a(href="/chat") Chat
                     li
                         a(href="exit") Logout
-                    li
+                    li(class="active")
                         a(href="contact") Contact
 
 #container(class="container")
-    #messages(class="hero-unit")
-        a(href="/auth/twitter")
-            - if (everyauth.loggedIn)
-                h1 Hi #{everyauth.twitter.user.name} welcome to twitterchat
-            - else
-                h1 Welcome to twitterchat please log in
+    h1 Rodrigo Damian Jiménez García
+    #projectRepo
+        a(href="http://github.com/rogithub/twitterchat") project repo
+    #mail
+        a(href="mailto:correo.rodrigo@gmail.com") correo.rodrigo@gmail.com
+    #twitter
+        a(href="http://twitter.com/ro_") @ro
+    #github
+        a(href="http://github.com/rogithub") rogithub    

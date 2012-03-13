@@ -58,6 +58,7 @@ app.configure('production', function(){
 app.get('/', routes.index);
 app.get('/chat', routes.chat);
 app.get('/exit', routes.exit);
+app.get('/contact', routes.contact);
 
 chat.listen(app);
 app.listen(twitterChatConfig.application.port);
