@@ -1,6 +1,7 @@
-/**
- * Module dependencies.
- */
+// switch between development and production like this:
+// NODE_ENV=development node app.js
+// OR
+// NODE_ENV=production node app.js
 
 var express   	= require('express')
   , routes 	= require('./routes')
@@ -30,6 +31,7 @@ everyauth.twitter
 	}).redirectPath('/chat');
 
 // Configuration
+var MemStore = express.session.MemoryStore;
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
@@ -55,6 +57,7 @@ app.configure('production', function(){
 
 app.get('/', routes.index);
 app.get('/chat', routes.chat);
+app.get('/exit', routes.exit);
 
 chat.listen(app);
 app.listen(twitterChatConfig.application.port);
