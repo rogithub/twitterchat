@@ -42,3 +42,11 @@ li.message {
 li.joined {
    font-weight: bold;
 }
+
+#sidebar {
+	background-color: red;
+}
+
+#main {
+	background-color:#ACDED6;
+}
