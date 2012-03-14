@@ -23,9 +23,7 @@ everyauth.twitter
 	.consumerSecret(twitterChatConfig.authentication.secret)
 	.findOrCreateUser(function(session, accessToken, accessTokenSecret,twitterUserData){	
 		var promise = this.Promise();
-		users.findOrCreateByTwitterData(twitterUserData, accessToken, accessTokenSecret, promise, function(err, usr){
-			if (err) throw err;
-		});	
+		users.findOrCreateByTwitterData(twitterUserData, accessToken, accessTokenSecret, promise);
 
 		return promise;
 	}).redirectPath('/chat');
@@ -54,7 +52,6 @@ app.configure('production', function(){
 });
 
 // Routes
-
 app.get('/', routes.index);
 app.get('/chat', routes.chat);
 app.get('/exit', routes.exit);

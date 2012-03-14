@@ -8,6 +8,7 @@ $(function(){
     var txtMsg = $("#txtMessage");
     var btnSend = $("#btnSend");
     var messages = $("#msgs");
+    var users = $("#usrs");
     var screenName = $("#screenName").val();
     var twitterId  = $("#twitterId").val();
     txtMsg.focus();
@@ -21,11 +22,36 @@ $(function(){
 
     socket.on('joined', function(data) {
         messages.prepend('<li class="joined">@' + data.screenName + ' joined.' + '</li>');
+	addUser(data);
     });
 
     socket.on('leaved', function(data) {
 	messages.prepend('<li class="joined">@' + data.screenName + ' disconnected.' + '</li>');
+	removeUser(data);
     });
+
+    socket.on('getOnlineUsers', function(onlineUsers) {
+	users.find("li").remove();
+	if (onlineUsers) {
+		for(var i=0; i < onlineUsers.length; i++) {
+			addUser(onlineUsers[i]);
+		}
+	}
+    });
+
+    function addUser(data) {
+	if (!data) return;
+	if (users.find("input:hidden[value='"+data.twitterId+"']").length == 0) {
+		var strHidden = '<input type="hidden" value="' + data.twitterId + '" />';
+        	var strLi = '<li>@' + data.screenName + strHidden + '</li>';
+        	users.preppend(strLi);
+	}
+    }
+    
+    function removeUser(data) {
+ 	if (!data) return;
+        users.find("input:hidden[value='"+data.twitterId+"']").parent().remove();
+    }
 
     function sendMessage() {
 	var msg = txtMsg.attr('value');
