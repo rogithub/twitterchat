@@ -21,10 +21,21 @@ mongoose.connect(twitterChatConfig.database.host);
 everyauth.twitter
 	.consumerKey(twitterChatConfig.authentication.key)
 	.consumerSecret(twitterChatConfig.authentication.secret)
-	.findOrCreateUser(function(session, accessToken, accessTokenSecret,twitterUserData){	
+	.findOrCreateUser(function(session, accessToken, accessTokenSecret,twitterUserData) {
 		var promise = this.Promise();
-		users.findOrCreateByTwitterData(twitterUserData, accessToken, accessTokenSecret, promise);
-
+		users.findOrCreateByTwitterData(twitterUserData, function (err, user) {		
+			if (err) {
+				logger.debug('promise fail');
+				logger.debug('Err: ' + err);
+				promise.fail(err);
+				throw err;
+			}
+			
+			logger.debug('promise set');
+			promise.fulfill(user);			
+		});
+		
+		logger.debug('returning promise');
 		return promise;
 	}).redirectPath('/chat');
 

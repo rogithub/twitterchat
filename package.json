@@ -4,11 +4,11 @@
   , "private": "true"
   , "dependencies": {
       "express": "2.5.5"
-    , "jade": ">= 0.0.1"
-    , "everyauth": ">=0.2.3"
-    , "konphyg": ">=1.0.0"
-    , "mongoose": ">=2.5.9"
-    , "socket.io": ">=0.9.0"
+    , "jade": ">=0.21.0"
+    , "everyauth": ">=0.2.32"
+    , "konphyg": ">=1.0.5"
+    , "mongoose": ">=2.5.10"
+    , "socket.io": "0.9.0"
     , "log4js": ">=0.4.1"
   }
   , "scripts": { "start": "./app.js" }
