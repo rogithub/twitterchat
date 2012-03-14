@@ -23,6 +23,8 @@ everyauth.twitter
 	.consumerSecret(twitterChatConfig.authentication.secret)
 	.findOrCreateUser(function(session, accessToken, accessTokenSecret,twitterUserData) {
 		var promise = this.Promise();
+		logger.debug('getting promise reference');
+
 		users.findOrCreateByTwitterData(twitterUserData, function (err, user) {		
 			if (err) {
 				logger.debug('promise fail');
