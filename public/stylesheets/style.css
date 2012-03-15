@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  overflow:hidden;
 }
 
 a {
@@ -47,10 +48,14 @@ li.joined {
    font-weight: bold;
 }
 
+#container {
+	overflow:auto;	
+}
+
 #sidebar {
 	background-color:#ACDED6;
 }
 
 #main {
-	background-color:#ACDED6;	
+	background-color:#ACDED6;
 }
