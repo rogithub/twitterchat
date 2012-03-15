@@ -29,6 +29,10 @@ a {
 #btnSend {
 	width:9%;
 	vertical-align:top;
+} 
+
+ul {
+   
 }
 
 li {
@@ -44,9 +48,9 @@ li.joined {
 }
 
 #sidebar {
-	background-color: red;
+	background-color:#ACDED6;
 }
 
 #main {
-	background-color:#ACDED6;
+	background-color:#ACDED6;	
 }

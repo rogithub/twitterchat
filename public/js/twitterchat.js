@@ -44,7 +44,7 @@ $(function(){
 	if (users.find("input:hidden[value='"+data.twitterId+"']").length == 0) {
 		var strHidden = '<input type="hidden" value="' + data.twitterId + '" />';
         	var strLi = '<li>@' + data.screenName + strHidden + '</li>';
-        	users.preppend(strLi);
+        	users.prepend(strLi);
 	}
     }
     
