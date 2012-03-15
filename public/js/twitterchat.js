@@ -39,11 +39,22 @@ $(function(){
 	}
     });
 
+    socket.on('openPrivate', function (data) {
+	if (twitterId == data.sender.twitterId) {
+		alert(data.target.screenName);
+	}
+
+	if (twitterId == data.target.twitterId) {
+		alert(data.sender.screenName);
+	}
+    });  
+
     function addUser(data) {
 	if (!data) return;
 	if (users.find("input:hidden[value='"+data.twitterId+"']").length == 0) {
-		var strHidden = '<input type="hidden" value="' + data.twitterId + '" />';
-        	var strLi = '<li>@' + data.screenName + strHidden + '</li>';
+		var hidId = '<input type="hidden" class="twitterId" value="' + data.twitterId + '" />';
+		var hidName = '<input type="hidden" class="screenName" value="' + data.screenName + '" />';
+        	var strLi = '<li>@' + data.screenName + hidId + hidName + '</li>';
         	users.prepend(strLi);
 	}
     }
@@ -68,4 +79,14 @@ $(function(){
     });
     
     btnSend.click(sendMessage);
+
+    users.delegate('li', 'dblclick', function() {
+	var hidId = $(this).find("input.twitterId").val();
+	var hidName = $(this).find("input.screenName").val();	
+	
+	var sender = {screenName: screenName, twitterId: twitterId};
+	var target = {screenName: hidName, twitterId: hidId};
+	var data = {sender: sender, target: target};
+	socket.emit("openPrivate", data);
+    });
 });
