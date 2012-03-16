@@ -33,3 +33,7 @@ exports.exit = function (req, res) {
                 res.end();
 //        });
 }
+
+exports.private = function (req, res) {
+	res.render('private', {title: 'twitterchat'});
+}

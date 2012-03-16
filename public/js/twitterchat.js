@@ -1,10 +1,6 @@
 $(function(){
-    var socket = undefined;
-    if (document.domain)
-	socket = io.connect(document.domain);
-    else
-    	socket = io.connect('http://localhost');
-
+    var socket = io.connect();
+    
     var txtMsg = $("#txtMessage");
     var btnSend = $("#btnSend");
     var messages = $("#msgs");
@@ -39,13 +35,15 @@ $(function(){
 	}
     });
 
-    socket.on('openPrivate', function (data) {
+    socket.on('openPrivate', function (data) {	 
 	if (twitterId == data.sender.twitterId) {
-		alert(data.target.screenName);
+		var pUser = "private chat with @"+data.target.screenName;
+		window.open("private", pUser, null);	 
 	}
 
 	if (twitterId == data.target.twitterId) {
-		alert(data.sender.screenName);
+		var pUser = "private chat with @"+data.sender.screenName;
+		 window.open("private", pUser, null);
 	}
     });  
 
@@ -64,7 +62,7 @@ $(function(){
         users.find("input:hidden[value='"+data.twitterId+"']").parent().remove();
     }
 
-    function sendMessage() {
+    function sendMessage() {	
 	var msg = txtMsg.attr('value');
         if (msg) {
             socket.emit('message', {screenName: screenName, twitterId: twitterId, message: msg});
@@ -83,10 +81,11 @@ $(function(){
     users.delegate('li', 'dblclick', function() {
 	var hidId = $(this).find("input.twitterId").val();
 	var hidName = $(this).find("input.screenName").val();	
-	
-	var sender = {screenName: screenName, twitterId: twitterId};
-	var target = {screenName: hidName, twitterId: hidId};
-	var data = {sender: sender, target: target};
-	socket.emit("openPrivate", data);
+	if (hidId != twitterId && hidName != screenName) {
+		var sender = {screenName: screenName, twitterId: twitterId};
+		var target = {screenName: hidName, twitterId: hidId};
+		var data = {sender: sender, target: target};
+		socket.emit("openPrivate", data);
+	}
     });
 });

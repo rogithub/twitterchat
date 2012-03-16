@@ -1,0 +1,24 @@
+#navbar(class="navbar navbar-fixed-top")
+    #navbarInner(class="navbar-inner")
+        #navbarContainer(class="container")
+            a(class="btn btn-navbar",  data-toggle="collapse", data-target=".nav-collapse")
+                span(class="icon-bar")
+                span(class="icon-bar")
+                span(class="icon-bar")
+            a(class="brand", href="#") #{title}
+
+#container-fluid(class="container-fluid")
+    #container(class="row-fluid")
+        #sidebar(class="span2")
+            ul(id="usrs")
+        #main(class="span10")
+            ul(id="msgs")
+
+#bottom(class="bottom-dock")
+    footer
+        input(type="hidden", id="screenName", value="#{screenName}")
+        input(type="hidden", id="twitterId",  value="#{twitterId}")
+        input(type="text", id="txtMessage", placeholder="Type something…")
+        #buttonContainer(class="buttonContainer")
+            input(type="button", id="btnSend", class="btn btn-primary", value="Send")
+
