@@ -1,7 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  overflow:hidden;
+  /*overflow:hidden;*/
 }
 
 a {
@@ -12,23 +12,17 @@ a {
     position: fixed; 
     bottom: 0px; 
     left: 0px; 
-    width: 100%; 
+    width: 100%;
     color: #fff; 
     background: #000;
-    padding: 3px;
-}
-
-.buttonContainer {
-	padding-left:1%;
-	display:inline;
-	text-align:right;
+    padding: 2px;
 }
 
 #txtMessage {
-	width:89%;
+	width:100%;
 }
 #btnSend {
-	width:9%;
+	width:100%;
 	vertical-align:top;
 } 
 

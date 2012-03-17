@@ -1,5 +1,5 @@
 $(function(){
-    var socket = io.connect();
+    var socket = io.connect(document.location.href);
     
     var txtMsg = $("#txtMessage");
     var btnSend = $("#btnSend");

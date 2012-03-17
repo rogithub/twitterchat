@@ -35,5 +35,14 @@ exports.exit = function (req, res) {
 }
 
 exports.private = function (req, res) {
-	res.render('private', {title: 'twitterchat'});
+	if (req.loggedIn) {
+        	res.render('private', { title: 'twitterchat',
+                             screenName: req.session.auth.twitter.user.screen_name,
+                             twitterId:  req.session.auth.twitter.user.id
+                  });
+  	}
+  	else {
+        	res.writeHeader(303, {'location': '/'});
+        	res.end();
+  	}
 }

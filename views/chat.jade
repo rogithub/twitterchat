@@ -26,9 +26,10 @@
 
 #bottom(class="bottom-dock")
     footer
-        input(type="hidden", id="screenName", value="#{screenName}")
-        input(type="hidden", id="twitterId",  value="#{twitterId}")
-        input(type="text", id="txtMessage", placeholder="Type something…")
-        #buttonContainer(class="buttonContainer")
-            input(type="button", id="btnSend", class="btn btn-primary", value="Send")
-
+        #row(class="row-fluid")
+            #txtColumn(class="span11")
+                input(type="hidden", id="screenName", value="#{screenName}")
+                input(type="hidden", id="twitterId",  value="#{twitterId}")
+                input(type="text", id="txtMessage", placeholder="Type something…")
+            #btnColumn(class="span1")
+                input(type="button", id="btnSend", class="btn btn-primary", value="Send")
