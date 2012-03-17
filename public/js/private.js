@@ -5,29 +5,38 @@ $(function() {
     var btnSend = $("#btnSend");
     var messages = $("#msgs");
 
-    var screenName = $("#screenName").val();
-    var twitterId  = $("#twitterId").val();
+    var pageData = {
+	sender: {
+	   	screenName: $("#senderScreenName").val(),
+    		twitterId: $("#senderTwitterId").val()
+	},
+	target: {
+		screenName: $("#targetScreenName").val(),
+                twitterId: $("#targetTwitterId").val()
+	}
+    };
+
     txtMsg.focus();
    
-    socket.emit('join',  {screenName: screenName, twitterId: twitterId} );
+    socket.emit('join',  {sender: pageData.sender, target: pageData.target} );
     
     socket.on('message', function(data) {
 	var strData = data.message.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");	
-	messages.prepend('<li class="message"><a href="http://twitter.com/' + data.screenName + '">@' + data.screenName + '</a>: '  + strData + '</li>');
+	messages.prepend('<li class="message"><a href="http://twitter.com/' + data.sender.screenName + '">@' + data.sender.screenName + '</a>: '  + strData + '</li>');
     });
 
     socket.on('joined', function(data) {
-        messages.prepend('<li class="joined">@' + data.screenName + ' joined.' + '</li>');
+        messages.prepend('<li class="joined">@' + data.sender.screenName + ' joined.' + '</li>');
     });
 
     socket.on('leaved', function(data) {
-	messages.prepend('<li class="joined">@' + data.screenName + ' disconnected.' + '</li>');	
+	messages.prepend('<li class="joined">@' + data.sender.screenName + ' disconnected.' + '</li>');
     });
 
-    function sendMessage() {	
+    function sendMessage() {
 	var msg = txtMsg.attr('value');
         if (msg) {
-            socket.emit('message', {screenName: screenName, twitterId: twitterId, message: msg});
+            socket.emit('message', {sender: pageData.sender, target: pageData.target, message: msg});
         }
         txtMsg.focus();
         txtMsg.attr('value', '');

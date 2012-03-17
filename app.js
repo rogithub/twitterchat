@@ -69,7 +69,7 @@ app.get('/', routes.index);
 app.get('/chat', routes.chat);
 app.get('/exit', routes.exit);
 app.get('/contact', routes.contact);
-app.get('/private', routes.private);
+app.get('/private/:id/:name', routes.private);
 
 chat.listen(app);
 app.listen(config.appConfig.application.port);

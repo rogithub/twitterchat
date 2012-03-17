@@ -34,11 +34,17 @@ exports.exit = function (req, res) {
 //        });
 }
 
-exports.private = function (req, res) {
+exports.private = function (req, res) {	
 	if (req.loggedIn) {
-        	res.render('private', { title: 'twitterchat',
+        	res.render('private', { title: 'Private with @' + req.params.name,
+			sender: {			
                              screenName: req.session.auth.twitter.user.screen_name,
                              twitterId:  req.session.auth.twitter.user.id
+			},
+			target: {
+			     screenName: req.params.name,
+			     twitterId: req.params.id
+			}
                   });
   	}
   	else {
