@@ -43,7 +43,7 @@ $(function(){
 
 	if (twitterId == data.target.twitterId) {
 		var pUser = "private chat with @"+data.sender.screenName;
-		 window.open("private", pUser, null);
+		window.open("private", pUser, null);
 	}
     });  
 
