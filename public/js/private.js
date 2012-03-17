@@ -1,5 +1,5 @@
 $(function() {
-    var socket = io.connect(document.location.href);
+    var socket = io.connect(document.location.host + "/private");
     
     var txtMsg = $("#txtMessage");
     var btnSend = $("#btnSend");
