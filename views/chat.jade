@@ -1,35 +1,41 @@
-#navbar(class="navbar navbar-fixed-top")
-    #navbarInner(class="navbar-inner")
-        #navbarContainer(class="container")
-            a(class="btn btn-navbar",  data-toggle="collapse", data-target=".nav-collapse")
-                span(class="icon-bar")
-                span(class="icon-bar")
-                span(class="icon-bar")
-            a(class="brand", href="#") #{title}
-            #menuItems(class="nav-collapse")
-                ul(class="nav")
-                    li
-                        a(href="/") Home
-                    li(class="active")
-                        a(href="/chat") Chat
-                    li
-                        a(href="exit") Logout
-                    li
-                        a(href="contact") Contact
+extends layout
 
-#container-fluid(class="container-fluid")
-    #container(class="row-fluid")
-        #sidebar(class="span2")
-            ul(id="usrs")
-        #main(class="span10")
-            ul(id="msgs")
+block scripts
+    script(src="/js/chat.js", type="text/javascript")
 
-#bottom(class="bottom-dock")
-    footer
-        #row(class="row-fluid")
-            #txtColumn(class="span11")
-                input(type="hidden", id="screenName", value="#{screenName}")
-                input(type="hidden", id="twitterId",  value="#{twitterId}")
-                input(type="text", id="txtMessage", placeholder="Type something…")
-            #btnColumn(class="span1")
-                input(type="button", id="btnSend", class="btn btn-primary", value="Send")
+block content
+    #navbar(class="navbar navbar-fixed-top")
+        #navbarInner(class="navbar-inner")
+            #navbarContainer(class="container")
+                a(class="btn btn-navbar",  data-toggle="collapse", data-target=".nav-collapse")
+                    span(class="icon-bar")
+                    span(class="icon-bar")
+                    span(class="icon-bar")
+                a(class="brand", href="#") #{title}
+                #menuItems(class="nav-collapse")
+                    ul(class="nav")
+                        li
+                            a(href="/") Home
+                        li(class="active")
+                            a(href="/chat") Chat
+                        li
+                            a(href="exit") Logout
+                        li
+                            a(href="contact") Contact
+
+    #container-fluid(class="container-fluid")
+        #container(class="row-fluid")
+            #sidebar(class="span2")
+                ul(id="usrs")
+            #main(class="span10")
+                ul(id="msgs")
+
+    #bottom(class="bottom-dock")
+        footer
+            #row(class="row-fluid")
+                #txtColumn(class="span11")
+                    input(type="hidden", id="screenName", value="#{screenName}")
+                    input(type="hidden", id="twitterId",  value="#{twitterId}")
+                    input(type="text", id="txtMessage", placeholder="Type something…")
+                #btnColumn(class="span1")
+                    input(type="button", id="btnSend", class="btn btn-primary", value="Send")

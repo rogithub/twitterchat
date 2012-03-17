@@ -1,29 +1,32 @@
-#navbar(class="navbar navbar-fixed-top")
-    #navbarInner(class="navbar-inner")
-        #navbarContainer(class="container")
-            a(class="btn btn-navbar",  data-toggle="collapse", data-target=".nav-collapse")
-                span(class="icon-bar")
-                span(class="icon-bar")
-                span(class="icon-bar")
-            a(class="brand", href="#") #{title}
-            #menuItems(class="nav-collapse")
-                ul(class="nav")
-                    li
-                        a(href="/") Home
-                    li
-                        a(href="/chat") Chat
-                    li
-                        a(href="exit") Logout
-                    li(class="active")
-                        a(href="contact") Contact
+extends layout
 
-#container(class="container")
-    h1 Rodrigo Damian Jiménez García
-    #projectRepo
-        a(href="http://github.com/rogithub/twitterchat") project repo
-    #mail
-        a(href="mailto:correo.rodrigo@gmail.com") correo.rodrigo@gmail.com
-    #twitter
-        a(href="http://twitter.com/ro_") @ro
-    #github
-        a(href="http://github.com/rogithub") rogithub    
+block content
+    #navbar(class="navbar navbar-fixed-top")
+        #navbarInner(class="navbar-inner")
+            #navbarContainer(class="container")
+                a(class="btn btn-navbar",  data-toggle="collapse", data-target=".nav-collapse")
+                    span(class="icon-bar")
+                    span(class="icon-bar")
+                    span(class="icon-bar")
+                a(class="brand", href="#") #{title}
+                #menuItems(class="nav-collapse")
+                    ul(class="nav")
+                        li
+                            a(href="/") Home
+                        li
+                            a(href="/chat") Chat
+                        li
+                            a(href="exit") Logout
+                        li(class="active")
+                            a(href="contact") Contact
+
+    #container(class="container")
+        h1 Rodrigo Damian Jiménez García
+        #projectRepo
+            a(href="http://github.com/rogithub/twitterchat") project repo
+        #mail
+            a(href="mailto:correo.rodrigo@gmail.com") correo.rodrigo@gmail.com
+        #twitter
+            a(href="http://twitter.com/ro_") @ro
+        #github
+            a(href="http://github.com/rogithub") rogithub    

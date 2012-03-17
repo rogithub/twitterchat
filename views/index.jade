@@ -1,26 +1,29 @@
-#navbar(class="navbar navbar-fixed-top")
-    #navbarInner(class="navbar-inner")
-        #navbarContainer(class="container")
-            a(class="btn btn-navbar",  data-toggle="collapse", data-target=".nav-collapse")
-                span(class="icon-bar")
-                span(class="icon-bar")
-                span(class="icon-bar")
-            a(class="brand", href="#") #{title}
-            #menuItems(class="nav-collapse")
-                ul(class="nav")
-                    li(class="active")
-                        a(href="/") Home
-                    li
-                        a(href="/chat") Chat
-                    li
-                        a(href="exit") Logout
-                    li
-                        a(href="contact") Contact
+extends layout
 
-#container(class="container")
-    #messages(class="hero-unit")
-        a(href="/auth/twitter")
-            - if (everyauth.loggedIn)
-                h1 Hi #{everyauth.twitter.user.name} welcome to twitterchat
-            - else
-                h1 Welcome to twitterchat please log in
+block content
+    #navbar(class="navbar navbar-fixed-top")
+        #navbarInner(class="navbar-inner")
+            #navbarContainer(class="container")
+                a(class="btn btn-navbar",  data-toggle="collapse", data-target=".nav-collapse")
+                    span(class="icon-bar")
+                    span(class="icon-bar")
+                    span(class="icon-bar")
+                a(class="brand", href="#") #{title}
+                #menuItems(class="nav-collapse")
+                    ul(class="nav")
+                        li(class="active")
+                            a(href="/") Home
+                        li
+                            a(href="/chat") Chat
+                        li
+                            a(href="exit") Logout
+                        li
+                            a(href="contact") Contact
+
+    #container(class="container")
+        #messages(class="hero-unit")
+            a(href="/auth/twitter")
+                - if (everyauth.loggedIn)
+                    h1 Hi #{everyauth.twitter.user.name} welcome to twitterchat
+                - else
+                    h1 Welcome to twitterchat please log in
