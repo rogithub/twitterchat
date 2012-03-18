@@ -16,11 +16,11 @@ block content
     #bottom(class="bottom-dock")
         footer
             #row(class="row-fluid")
-                #txtColumn(class="span11")
+                #txtColumn
                     input(type="hidden", id="senderScreenName", value="#{sender.screenName}")
                     input(type="hidden", id="senderTwitterId",  value="#{sender.twitterId}")
                     input(type="hidden", id="targetScreenName", value="#{target.screenName}")
                     input(type="hidden", id="targetTwitterId",  value="#{target.twitterId}")
                     input(type="text", id="txtMessage", placeholder="Type something…")
-                #btnColumn(class="span1")
+                #btnColumn
                     input(type="button", id="btnSend", class="btn btn-primary", value="Send")
