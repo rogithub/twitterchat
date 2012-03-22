@@ -37,17 +37,17 @@ $(function(){
 
     socket.on('openPrivate', function (data) {	 
 	if (twitterId == data.sender.twitterId) {
-		openPrivateWindow(data.target);
+		openPrivateWindow(data.target, data.id);
 	}
 
 	if (twitterId == data.target.twitterId) {
-		openPrivateWindow(data.sender);
+		openPrivateWindow(data.sender, data.id);
 	}
     });  
 
-    function openPrivateWindow(data) {
+    function openPrivateWindow(data, id) {
 	var title = "Private chat with @" + data.twitterId;
-	var url = "private/" + data.twitterId + "/" + data.screenName;
+	var url = "private/" + id + "/" + data.twitterId + "/" + data.screenName;
 	window.open(url, title, null);
     }
 

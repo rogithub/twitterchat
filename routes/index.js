@@ -44,7 +44,8 @@ exports.private = function (req, res) {
 			target: {
 			     screenName: req.params.name,
 			     twitterId: req.params.id
-			}
+			},
+			id: req.params.sessionId
                   });
   	}
   	else {
