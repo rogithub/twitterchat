@@ -8,8 +8,8 @@ $(function(){
     var screenName = $("#screenName").val();
     var twitterId  = $("#twitterId").val();
     txtMsg.focus();
-   
-    socket.emit('join',  {screenName: screenName, twitterId: twitterId} );
+
+    socket.emit('join',  {screenName: screenName, twitterId: twitterId} );    
     
     socket.on('message', function(data) {
 	var strData = data.message.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");	
@@ -43,27 +43,27 @@ $(function(){
 	if (twitterId == data.target.twitterId) {
 		openPrivateWindow(data.sender, data.id);
 	}
-    });  
+    }); 
+
+    function addUser(data) {
+        if (!data) return;
+        if (users.find("input:hidden[value='"+data.twitterId+"']").length == 0) {
+                var hidId = '<input type="hidden" class="twitterId" value="' + data.twitterId + '" />';
+                var hidName = '<input type="hidden" class="screenName" value="' + data.screenName + '" />';
+                var strLi = '<li>@' + data.screenName + hidId + hidName + '</li>';
+                users.prepend(strLi);
+        }
+    }
+
+    function removeUser(data) {
+        if (!data) return;
+        users.find("input:hidden[value='"+data.twitterId+"']").parent().remove();
+    } 
 
     function openPrivateWindow(data, id) {
 	var title = "Private chat with @" + data.twitterId;
 	var url = "private/" + id + "/" + data.twitterId + "/" + data.screenName;
 	window.open(url, title, null);
-    }
-
-    function addUser(data) {
-	if (!data) return;
-	if (users.find("input:hidden[value='"+data.twitterId+"']").length == 0) {
-		var hidId = '<input type="hidden" class="twitterId" value="' + data.twitterId + '" />';
-		var hidName = '<input type="hidden" class="screenName" value="' + data.screenName + '" />';
-        	var strLi = '<li>@' + data.screenName + hidId + hidName + '</li>';
-        	users.prepend(strLi);
-	}
-    }
-    
-    function removeUser(data) {
- 	if (!data) return;
-        users.find("input:hidden[value='"+data.twitterId+"']").parent().remove();
     }
 
     function sendMessage() {	
