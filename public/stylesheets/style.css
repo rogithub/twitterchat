@@ -50,8 +50,12 @@ li {
     list-style:none;
 }
 
+ul.users li {
+   cursor:pointer;
+}
+
 li.message {
-    
+
 }
 
 li.joined {

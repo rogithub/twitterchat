@@ -82,7 +82,7 @@ $(function(){
     
     btnSend.click(sendMessage);
 
-    users.delegate('li', 'dblclick', function() {
+    users.delegate('li', 'click', function() {
 	var hidId = $(this).find("input.twitterId").val();
 	var hidName = $(this).find("input.screenName").val();	
 	if (hidId != twitterId && hidName != screenName) {
