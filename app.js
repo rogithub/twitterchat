@@ -11,7 +11,9 @@ var express   	= require('express')
   , users 	= require('./lib/chat/users')
   , chat	= require('./lib/chat/chat')
   , logger 	= require('log4js').getLogger()
-  , mongoose	= require('mongoose');
+  , mongoose	= require('mongoose')
+  , cluster	= require('cluster') 
+  , numCPUs = 	require('os').cpus().length;
 
 var app = express.createServer();
 
@@ -72,6 +74,21 @@ app.get('/contact', routes.contact);
 app.get('/private/:sessionId/:id/:name', routes.private);
 
 chat.listen(app);
-app.listen(config.appConfig.application.port);
-logger.debug("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+
+if (cluster.isMaster) {
+  // Fork workers.
+  for (var i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+
+  cluster.on('death', function(worker) {
+    console.log('worker ' + worker.pid + ' died. Restart...');
+    cluster.fork();
+  });
+} else {
+  // Worker processes have a http server.
+  app.listen(config.appConfig.application.port);
+}
+
+logger.debug("Express server listening on port %d in %s mode", config.appConfig.application.port, app.settings.env);
 logger.debug(config.getUrl());
