@@ -9,7 +9,8 @@ $(function(){
     var twitterId  = $("#twitterId").val();
     txtMsg.focus();
 
-    socket.emit('join',  {screenName: screenName, twitterId: twitterId} );    
+    socket.emit('join',  {screenName: screenName, twitterId: twitterId} );
+    addUser({screenName: screenName, twitterId: twitterId});
     
     socket.on('message', function(data) {
 	var strData = data.message.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");	
