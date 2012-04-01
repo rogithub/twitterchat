@@ -16,14 +16,11 @@ block content
                         li
                             a(href="/chat") Chat
                         li
-                            a(href="exit") Logout
+                            a(href="/logout") Logout
                         li
-                            a(href="contact") Contact
+                            a(href="/contact") Contact
 
     #container(class="container")
         #messages(class="hero-unit")
             a(href="/auth/twitter")
-                - if (everyauth.loggedIn)
-                    h1 Hi #{everyauth.twitter.user.name} welcome to twitterchat
-                - else
-                    h1 Welcome to twitterchat please log in
+                h1 Welcome to twitterchat please log in

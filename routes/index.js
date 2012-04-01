@@ -1,14 +1,17 @@
 /*   GET home page.   */
+var logger	= require('log4js').getLogger();
+
 
 exports.index = function(req, res) {
   res.render('index', { title: 'twitterchat' });
 };
 
-exports.chat = function(req, res) {
-  if (req.loggedIn) {		
+exports.chat = function(req, res) {  
+  logger.debug('authenticated: '+ req.isAuthenticated());      
+  if (req.isAuthenticated()) {		
   	res.render('chat', { title: 'twitterchat', 
-			     screenName: req.session.auth.twitter.user.screen_name,
-			     twitterId:  req.session.auth.twitter.user.id
+			     screenName: req.user.screenName,
+			     twitterId:  req.user.twitterId
 		  });
   }
   else {
@@ -21,25 +24,12 @@ exports.contact = function(req, res) {
 	res.render('contact', {title: 'twitterchat'});
 }
 
-exports.exit = function (req, res) {
-
-	delete req.session.auth;
-	req.loggedIn = false;
-
-//	req.logout();	
-//        req.session.destroy(function(err){
-//                if (err) throw err;
-                res.writeHeader(303, {'location': '/'});
-                res.end();
-//        });
-}
-
 exports.private = function (req, res) {	
 	if (req.loggedIn) {
         	res.render('private', { title: 'Private with @' + req.params.name,
 			sender: {			
-                             screenName: req.session.auth.twitter.user.screen_name,
-                             twitterId:  req.session.auth.twitter.user.id
+                             screenName: req.user.screenName,
+                             twitterId:  req.user.twitterId
 			},
 			target: {
 			     screenName: req.params.name,
@@ -52,4 +42,10 @@ exports.private = function (req, res) {
         	res.writeHeader(303, {'location': '/'});
         	res.end();
   	}
+}
+
+exports.logout = function(req, res) {
+  logger.debug('logging out');
+  req.logout();
+  res.redirect('/');	
 }
