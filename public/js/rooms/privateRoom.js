@@ -5,7 +5,8 @@ $(function() {
     var btnSend = $("#btnSend");
     var messages = $("#msgs");
 
-    var socket = io.connect(document.location.host + "/private/" + sessionId);
+    //var socket = io.connect(document.location.host + "/private/" + sessionId);
+    var socket = new io.Socket(null, {port:80,rememerTransport:false});
 
     var pageData = {
 	sender: {

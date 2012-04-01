@@ -104,9 +104,9 @@ app.get('/auth/twitter/callback', passport.authenticate('twitter', { successRedi
 app.get('/logout', routes.logout);
 
 chat.listen(app);
-//app.listen(config.appConfig.application.port);
+app.listen(config.appConfig.application.port);
 
-if (cluster.isMaster) {
+/*if (cluster.isMaster) {
   // Fork workers.
   for (var i = 0; i < numCPUs; i++) {
     cluster.fork();
@@ -120,6 +120,6 @@ if (cluster.isMaster) {
   // Worker processes have a http server.
   app.listen(config.appConfig.application.port);
 }
-
+*/
 logger.debug("Express server listening on port %d in %s mode", config.appConfig.application.port, app.settings.env);
 logger.debug(config.getUrl());
