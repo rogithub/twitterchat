@@ -1,6 +1,6 @@
 $(function(){
-    //var socket = io.connect(document.location.href);
-    var socket = new io.Socket(null, {port:80,rememerTransport:false});
+    var socket = io.connect(document.location.href);
+    //var socket = new io.Socket(document.location.href, {port:80,rememerTransport:false});
     
     var txtMsg = $("#txtMessage");
     var btnSend = $("#btnSend");
