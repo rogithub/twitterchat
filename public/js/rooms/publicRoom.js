@@ -49,7 +49,7 @@ $(function(){
 
     function addUser(data) {
         if (!data) return;
-        if (users.find("input:hidden[value='"+data.twitterId+"']").length == 0) {
+        if (users.find("li input[value='"+data.twitterId+"']").length == 0) {
                 var hidId = '<input type="hidden" class="twitterId" value="' + data.twitterId + '" />';
                 var hidName = '<input type="hidden" class="screenName" value="' + data.screenName + '" />';
                 var strLi = '<li>@' + data.screenName + hidId + hidName + '</li>';
