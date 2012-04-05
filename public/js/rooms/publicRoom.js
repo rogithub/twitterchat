@@ -11,8 +11,7 @@ $(function(){
     txtMsg.focus();
 
     socket.emit('join',  {screenName: screenName, twitterId: twitterId} );
-    addUser({screenName: screenName, twitterId: twitterId});
-    
+            
     socket.on('message', function(data) {
 	var strData = data.message.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");	
 	messages.prepend('<li class="message"><a href="http://twitter.com/' + data.screenName + '">@' + data.screenName + '</a>: '  + strData + '</li>');
@@ -47,8 +46,7 @@ $(function(){
 	}
     }); 
 
-    function addUser(data) {
-        if (!data) return;
+    function addUser(data) {	
         if (users.find("li input[value='"+data.twitterId+"']").length == 0) {
                 var hidId = '<input type="hidden" class="twitterId" value="' + data.twitterId + '" />';
                 var hidName = '<input type="hidden" class="screenName" value="' + data.screenName + '" />';
@@ -57,9 +55,8 @@ $(function(){
         }
     }
 
-    function removeUser(data) {
-        if (!data) return;
-        users.find("input:hidden[value='"+data.twitterId+"']").parent().remove();
+    function removeUser(data) {       
+        users.find("input[value='"+data.twitterId+"']").parent().remove();
     } 
 
     function openPrivateWindow(data, id) {
